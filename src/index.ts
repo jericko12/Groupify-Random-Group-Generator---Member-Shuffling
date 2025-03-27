@@ -210,7 +210,7 @@ function loadGcashQR(): void {
     
     // Force reload by adding a timestamp
     const timestamp = new Date().getTime();
-    qrImage.src = `gcash-qr.jpg?t=${timestamp}`;
+    qrImage.src = `./src/assets/gcash-qr.jpg?t=${timestamp}`;
     console.log('Set QR image source to:', qrImage.src);
   } else {
     console.error('Could not find QR image element with class "donate-qr"');
@@ -257,7 +257,7 @@ function showQRCodeFullScreen(): void {
   
   // Set image source with cache busting
   const timestamp = new Date().getTime();
-  qrImage.src = `gcash-qr.jpg?t=${timestamp}`;
+  qrImage.src = `./src/assets/gcash-qr.jpg?t=${timestamp}`;
   
   // Create title
   const title = document.createElement('h2');
