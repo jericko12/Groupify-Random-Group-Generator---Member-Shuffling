@@ -1,21 +1,22 @@
 {
   "name": "random-group-generator",
   "version": "1.0.0",
-  "description": "A tool to randomly assign members to groups",
+  "description": "A powerful web application that allows you to randomly assign members to groups",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url ./"
+    "build": "parcel build index.html --public-url ./",
+    "vercel-build": "parcel build index.html --public-url ./"
   },
   "keywords": [
     "random",
     "group",
     "generator",
-    "typescript"
+    "teambuilding"
   ],
-  "author": "",
+  "author": "ProTech",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "parcel-bundler": "^1.12.5",
     "typescript": "^4.9.5"
   }
