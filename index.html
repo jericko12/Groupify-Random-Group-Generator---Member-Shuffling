@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Group Generator</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><i class="fas fa-random"></i></div>
+            <h1>Random Group Generator</h1>
+            <p>Create randomized groups from a list of members</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <div class="form-group">
+                    <label for="numGroups">Number of Groups:</label>
+                    <input type="number" id="numGroups" min="1" value="2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="memberList">Member List:</label>
+                    <div class="file-import-container">
+                        <label for="excelFileInput" class="excel-import-label">
+                            <i class="fas fa-file-excel"></i> Import from Excel
+                            <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" style="display: none;">
+                        </label>
+                        <span id="fileName" class="file-name"></span>
+                    </div>
+                    <textarea id="memberList" placeholder="Enter member names (one per line) or import from Excel file" rows="10"></textarea>
+                    <div class="excel-help">
+                        <i class="fas fa-info-circle"></i> Excel file should have a column with "Name" or similar in the header
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="equalDistribution" checked>
+                    <label for="equalDistribution">Ensure equal distribution of members</label>
+                </div>
+
+                <div class="button-group">
+                    <button id="generateGroups" class="primary-button"><i class="fas fa-random"></i> Generate Groups</button>
+                    <button id="clearAll" class="secondary-button"><i class="fas fa-trash"></i> Clear All</button>
+                </div>
+            </section>
+
+            <section class="results-section" id="resultsSection">
+                <h2>Generated Groups</h2>
+                <div id="summaryStats"></div>
+                <div id="groupResults"></div>
+                <div class="download-section">
+                    <button id="downloadResults" class="download-button" disabled><i class="fas fa-download"></i> Download Results</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Random Group Generator | Developed by <strong>ProTech</strong></p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61574105611075" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.youtube.com/@ghostedph834" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://github.com/jericko12" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/justcallme.eko/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <div class="footer-buttons">
+                <button id="donateBtn" class="footer-button donate-button">
+                    <i class="fas fa-mug-hot"></i> Donate a Coffee
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close-button">&times;</span>
+            <h2>Donate a Coffee</h2>
+            <p>Your support helps keep this tool free and continuously improved!</p>
+            <div class="donate-qr-container">
+                <img src="gcash-qr.jpg" alt="GCash QR Code" class="donate-qr" 
+                     onerror="this.style.display='none'; if(!this.parentElement.querySelector('.qr-placeholder')) { this.parentElement.innerHTML += '<div class=\'qr-placeholder\'><i class=\'fas fa-qrcode\'></i><p>GCash QR Code</p></div>'; }">
+                <div class="donate-info">
+                    <p>Scan this QR code with your GCash app or send to the account below:</p>
+                    <div class="donate-account">
+                        <strong>GCash Account:</strong> <span id="gcashAccount">09706436276 (JE****O G.)</span>
+                        <button id="copyGcash" class="copy-button"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="donate-message">
+                <p>Thank you for supporting the development! ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/index.ts"></script>
+</body>
+</html> 
